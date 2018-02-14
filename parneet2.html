@@ -1,2 +1,90 @@
 <h1>Write hey</h1>
+<!DOCTYPE html>
 
+<head>
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>	
+<link href='https://fonts.googleapis.com/css?family=Rammetto+One' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<script src="/assets/jquery.js"></script>
+<style>
+body {
+  text-align: center;
+  font-family: 'Rammetto One', cursive;
+  font-size: 50px;
+  background: yellow;
+}
+button {
+  margin: 40px;
+}
+input {
+  font-size: 24px;
+}
+.fill {
+  background: white;
+  color: red;
+  border-bottom: 2px black solid;
+  font-family: 'Lobster', cursive;rig;
+  padding: 0 6px;
+  margin: 4px;
+}
+</style>
+</head>
+
+<body>
+<div class="prompt"></div>
+<button>Next</button>
+<script>
+// List of prompts for the user
+var prompts = [
+	'type a gift',
+	'type a stuffed animal',
+	'type a highway',
+	'type a reverse',
+	'type a vehicle',
+	'type a stuffed animal',
+	'type a device',
+	'type a love',
+	'type a gift',
+   ];
+
+var answers=[];
+// Keep track of current prompt we're on
+var currentPrompt = 0;
+
+// A function that will call the next prompt
+var nextPrompt = function() {
+  //if there's no answer in the form
+  if (currentPrompt != 0){
+    answers.push($('input').val());
+  }
+	// if there is a next prompt
+	if (currentPrompt < prompts.length) {
+		// put first prompt in all html elements with class 
+		$('.prompt').html(prompts[currentPrompt] +'<br><input type="text">');
+		// move the next prompt into variable currentPrompt 
+		currentPrompt = currentPrompt + 1;
+	}
+	//or else if we're at the end of the array
+	else {
+		// put a new message into the html.
+		showFinal();
+	}
+}
+
+//puts user answers into HTML
+var showFinal = function() {
+  $('.prompt').html(' a girl wanted a  <span class="fill">'+answers[0]+'</span>, but the boy gave a  <span class="fill">'+answers[1]+'</span> instead. In anger, the girl threw the bear on the <span class="fill">'+answers[2]+'</span>. The boy want to take it  <span class="fill">'+answers[3]+'</span>, but he was hit by a coming <span class="fill">'+answers[4]+'</span> and died.  At his funeral, The girl hugged the <span class="fill">'+answers[5]+'</span>. and the <span class="fill">'+answers[6]+'</span> in it spoke: "will you <span class="fill">'+answers[7]+'</span>? Guess what she found, a  <span class="fill">'+answers[8]+'</span> inside.');
+  $('button').hide();
+}
+// run nextPrompt function when button is clicked
+$('button').click(function() {
+	nextPrompt();
+});
+
+// Show the first prompt as soon as js loads
+nextPrompt();
+</script>
+
+</body>
